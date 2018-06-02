@@ -1,4 +1,4 @@
-function alpha=linemin(params,conjugdir,alpharoot,  MaxPop,Nbins,Tframes, hist, N, Nfac, NexpAv)
+function alpha=linemin2(params,conjugdir,alpharoot,  MaxPop,Nbins,Tframes, hist, N, Nfac, NexpAv)
 
 %%IN
 %%-params: a vector of size MaxPop+1 + Nbins (MaxPop+1 values for the frustration,the number of flies 
@@ -15,7 +15,13 @@ function alpha=linemin(params,conjugdir,alpharoot,  MaxPop,Nbins,Tframes, hist, 
 
 %%performs a backtracking search to determine a sufficiently good step size
 %%to guaratee that we are indeed minimizing the function. Sufficiently good
-%%is determined by the Armijo-Goldstein condition
+%%is determined by the Armijo-Goldstein condition with an additional
+%%bound. Sometimes works better on smaller datasets
+%%-N:  vector of size MaxPop+1 with ordered integers ranging from 0 to MaxPop 
+%%-Nfac: vector of size MaxPop+1 with the factorial of ordered integers ranging from 0 to MaxPop 
+%%-NexpAv: vector of size Nbins with the average number of individuals within
+%%each bin
+
 
 %%OUT
 %%-alpha: optimal step size along the search direction according to the Armijo-Goldstein condition
